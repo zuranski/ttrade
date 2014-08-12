@@ -1,4 +1,4 @@
-import urllib2,smtplib
+import urllib2,smtplib,string
 from bs4 import BeautifulSoup
 from email.mime.text import MIMEText
 
@@ -20,6 +20,7 @@ def getWebData(category,query):
 		except ValueError:  price=0.
 
 		title=listing.find('span',{'class':'tr tc_title'}).decode_contents()
+		title=title.replace('"',' inch')
 		web_data.append({'id':index,'title':title,'price':price})
 
 	return web_data
